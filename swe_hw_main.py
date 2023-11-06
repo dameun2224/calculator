@@ -29,7 +29,8 @@ def main():
         # 입력 exit 면 종료
         elif line == 'exit':
             break
-        else:  # 현재 입력이 연산자 아닐경우 (숫자)
+        # 현재 입력이 연산자 아닐경우 (숫자)
+        else:  
             if line.isdigit():  # 입력이 숫자
                 # 전 입력 값이 숫자가 아닌 경우
                 if len(inputNum) !=0 and not type(inputNum[-1]) is int:
@@ -43,7 +44,8 @@ def main():
                 else:
                     print("Invalid input. Please try again.")
                     continue
-            else: # 연산자 아닌데 숫자도, =도 아니거나 그 전값이 숫자인 경우  
+            # 연산자 아닌데 숫자도, =도 아니거나 그 전값이 숫자인 경우  
+            else: 
                 print("Invalid input. Please try again.")
                 continue
             
