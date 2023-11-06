@@ -1,4 +1,6 @@
-ㄴ# 이스터에그 함수 1
+git commit -m "KAN-35 <message>"
+
+# 이스터에그 함수 1
 # 이스터에그 조건에 맞아 출력이 있는 경우 return 0
 # 이스터에그 조건에 맞지 않아 출력이 없는 경우 return 1
 def easterEgg1(arr):
