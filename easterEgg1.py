@@ -1,7 +1,7 @@
 # 이스터에그 함수 1
 
 def easterEgg1(num):
-    # 모든 입력이 "7534"인 경우 "HELP!" 출력
+    # 입력이 "7534"인 경우 "HELP!" 출력
     if num == 7534:
         print("=> HELP!")
 
