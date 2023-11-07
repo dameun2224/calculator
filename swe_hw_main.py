@@ -11,7 +11,7 @@ def main():
                 continue
             # 그 전 입력이 숫자인 경우
             else:
-                inputNum.append(line) # 연산자 추가
+                inputNum.append(line) # 연산자 추가   
                 
                 # 여기서 부턴 = 에 대한 연산 진행
                 if line == '=':
@@ -29,9 +29,8 @@ def main():
             break
         # 현재 입력이 연산자 아닐경우 (숫자)
         else:
-            # 음수인지 확인
             try: 
-                int(line) # 문자열을 정수로 변환하려 시도 - 만약 여기서 안돼면 except 
+                int(line) # 문자열을 정수로 변환하려 시도 - 실패시 except 
                 if len(inputNum) !=0 and not type(inputNum[-1]) is int:
                     inputNum.append(int(line))
                     # 이스터 에그 값인지 확인
