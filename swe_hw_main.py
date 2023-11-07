@@ -1,10 +1,8 @@
-
 def main():
     inputNum = []
     print("프로그램 종료 : exit")
     while True:
         line = input()
-
         # 입력이 연산자인경우
         if line in ['+', '-', '*','=']:
             # 마지막 입력이 연산자 혹은 첫 입력이 연산자인 경우
@@ -30,9 +28,10 @@ def main():
         elif line == 'exit':
             break
         # 현재 입력이 연산자 아닐경우 (숫자)
-        else:  
-            if line.isdigit():  # 입력이 숫자
-                # 전 입력 값이 숫자가 아닌 경우
+        else:
+            # 음수인지 확인
+            try: 
+                int(line) # 문자열을 정수로 변환하려 시도 - 만약 여기서 안돼면 except 
                 if len(inputNum) !=0 and not type(inputNum[-1]) is int:
                     inputNum.append(int(line))
                     # 이스터 에그 값인지 확인
@@ -45,18 +44,9 @@ def main():
                 else: 
                     print("Invalid input. Please try again.")
                     continue
-            # 연산자 아닌데 숫자도(음수 포함), =도 아니거나 그 전값이 숫자인 경우  
-            else: 
-                # 음수인지 확인
-                try: 
-                    inputNum.append(int(line)) # 문자열을 정수로 변환하려 시도하여 리스트에 append 수행
-                    # 이스터 에그 값인지 확인
-                    # 이스터에그 함수에 값 전달
-                # 만약에 정수 변환 과정에서 음수가 아니라서 int 변환이 안된경우
-                except ValueError:
-                    print("Invalid input. Please try again.")
-                    continue
-            
-
+            # 만약에 정수 변환 과정에서 숫자가 아니라 int 변환이 안된경우
+            except ValueError:
+                print("Invalid input. Please try again.")
+                continue    
 main()
 
