@@ -41,13 +41,21 @@ def main():
                     inputNum.append(int(line))
                     # 이스터 에그 값인지 확인
                     # 이스터에그 함수에 값 전달
-                else:
+                # 전 입력 값이 숫자인 경우라 중복으로 숫자 입력 및 저장 거부
+                else: 
                     print("Invalid input. Please try again.")
                     continue
-            # 연산자 아닌데 숫자도, =도 아니거나 그 전값이 숫자인 경우  
+            # 연산자 아닌데 숫자도(음수 포함), =도 아니거나 그 전값이 숫자인 경우  
             else: 
-                print("Invalid input. Please try again.")
-                continue
+                # 음수인지 확인
+                try: 
+                    inputNum.append(int(line)) # 문자열을 정수로 변환하려 시도하여 리스트에 append 수행
+                    # 이스터 에그 값인지 확인
+                    # 이스터에그 함수에 값 전달
+                # 만약에 정수 변환 과정에서 음수가 아니라서 int 변환이 안된경우
+                except ValueError:
+                    print("Invalid input. Please try again.")
+                    continue
             
 
 main()
