@@ -144,7 +144,7 @@ def main():
                     # if 에러가 없으면: 연산자 함수에 값 전달 후 아래 내용 진행
                     if error(inputNum) == 1:
                         calculate(inputNum)
-                        inputNum.clear()
+                    inputNum.clear()
                     continue
 
         elif line == 'exit':
@@ -153,6 +153,7 @@ def main():
         else: # 현재 입력이 숫자일 경우
             if is_negative_numeric(line):
                 inputNum.append(int(line))
+                
                 easterEgg(inputNum)
                 continue
             else:
@@ -160,10 +161,10 @@ def main():
                     int(line) #문자열을 정수로 변환하려 시도 - 실패시 except
                     # 전 입력 값이 숫자가 아닌 경우
                     if len(inputNum) !=0 and not type(inputNum[-1]) is int:
-                        inputNum.append(int(line))
+                        inputNum.append(line)
                         continue
                     elif len(inputNum) == 0:
-                        inputNum.append(int(line))
+                        inputNum.append(line)
                         continue
                     else:
                         print("ERROR: 잘못된 값이 입력되었습니다. 숫자를 입력하세요")
