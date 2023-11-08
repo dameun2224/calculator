@@ -151,16 +151,19 @@ def main():
             break
 
         else: # 현재 입력이 숫자일 경우
-            try:
+            if is_negative_numeric(line):
+                inputNum.append(int(line))
+                easterEgg(inputNum)
+                continue
+            else:
+                try:
                     int(line) #문자열을 정수로 변환하려 시도 - 실패시 except
                     # 전 입력 값이 숫자가 아닌 경우
                     if len(inputNum) !=0 and not type(inputNum[-1]) is int:
                         inputNum.append(int(line))
-                        easterEgg(inputNum)
                         continue
                     elif len(inputNum) == 0:
                         inputNum.append(int(line))
-                        easterEgg(inputNum)
                         continue
                     else:
                         print("ERROR: 잘못된 값이 입력되었습니다. 숫자를 입력하세요")
@@ -168,11 +171,10 @@ def main():
                         inputNum.clear()
                         continue
 
-            except ValueError: # 연산자 아닌데 숫자도, =도 아니거나 그 전값이 숫자인 경우
-                    print("ERROR: 잘못된 값이 입력되었습니다. 정수 또는 연산자(+,-,*)를 입력하세요")
-                    print("--------------")
-                    inputNum.clear()
-                    continue
+                except ValueError: # 연산자 아닌데 숫자도, =도 아니거나 그 전값이 숫자인 경우
+                        print("ERROR: 잘못된 값이 입력되었습니다. 정수 또는 연산자(+,-,*)를 입력하세요")
+                        print("--------------")
+                        inputNum.clear()
+                        continue
             
 main()
-
