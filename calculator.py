@@ -97,7 +97,6 @@ def error(inputNum):
     if len(operators) != 1:
         print("ERROR: 한 가지 종류의 연산자만 입력하세요")
         print("--------------")
-        inputNum.clear()
         return 0
 
     # 4. 입력된 수가 임계값을 넘었는지 확인
@@ -106,7 +105,6 @@ def error(inputNum):
             print("ERROR: 입력된 수가 임계값 100000을 넘었습니다.")
             print("--------------")
             return 0
-        #inputNum.clear()
     return 1
 
 
@@ -144,42 +142,37 @@ def main():
                 if line == '=':
                     # 에러 함수에 값 전달
                     # if 에러가 없으면: 연산자 함수에 값 전달 후 아래 내용 진행
-                    if error(inputNum)==1:
+                    if error(inputNum) == 1:
                         calculate(inputNum)
-                    else:
                         inputNum.clear
                     continue
 
         elif line == 'exit':
             break
 
-        else:  # 현재 입력이 숫자일 경우
-            if is_negative_numeric(line):
-                inputNum.append(int(line))
-                easterEgg(inputNum) 
-                continue
-
-            else:
-                try:
-                    int(line)    #문자열을 정수로 변환하려 시도 - 실패시 except 
+        else: # 현재 입력이 숫자일 경우
+            try:
+                    int(line) #문자열을 정수로 변환하려 시도 - 실패시 except
                     # 전 입력 값이 숫자가 아닌 경우
                     if len(inputNum) !=0 and not type(inputNum[-1]) is int:
                         inputNum.append(int(line))
+                        easterEgg(inputNum)
                         continue
-
                     elif len(inputNum) == 0:
                         inputNum.append(int(line))
+                        easterEgg(inputNum)
                         continue
-
                     else:
                         print("ERROR: 잘못된 값이 입력되었습니다. 숫자를 입력하세요")
                         print("--------------")
                         inputNum.clear()
                         continue
-                except ValueError: # 연산자 아닌데 숫자도, =도 아니거나 그 전값이 숫자인 경우
+
+            except ValueError: # 연산자 아닌데 숫자도, =도 아니거나 그 전값이 숫자인 경우
                     print("ERROR: 잘못된 값이 입력되었습니다. 정수 또는 연산자(+,-,*)를 입력하세요")
                     print("--------------")
                     inputNum.clear()
                     continue
             
 main()
+
