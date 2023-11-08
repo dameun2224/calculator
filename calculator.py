@@ -144,7 +144,7 @@ def main():
                     # if 에러가 없으면: 연산자 함수에 값 전달 후 아래 내용 진행
                     if error(inputNum) == 1:
                         calculate(inputNum)
-                        inputNum.clear
+                        inputNum.clear()
                     continue
 
         elif line == 'exit':
