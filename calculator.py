@@ -1,24 +1,24 @@
-#2023.11.9(목) calculator Version.2
+#2023.11.9(목) calculator Version.3
 
 #연산자 함수 Add, Sub, Mul
 def calculate(inputNum):
     def Add(inputNum):
-        sum=inputNum[0]
+        result=inputNum[0]
         for i in range (2, len(inputNum),2):
-            sum += inputNum[i]
-        return sum
+            result += inputNum[i]
+        return result
 
     def Sub(inputNum):
-        sum = inputNum[0]
+        result = inputNum[0]
         for i in range(2, len(inputNum),2): 
-            sum -= inputNum[i]
-        return sum
+            result -= inputNum[i]
+        return result
 
     def Mul(inputNum):
-        sum = inputNum[0]
+        result = inputNum[0]
         for i in range (2, len(inputNum),2):
-            sum *= inputNum[i]
-        return sum
+            result *= inputNum[i]
+        return result
 
     if inputNum[1]=='+':
         result = Add(inputNum)
@@ -109,7 +109,6 @@ def main():
                 # 결과 출력 
                 else:
                     calculate(inputLine)
-                    inputLine.clear()
                     continue
             # 입력된 연산자가 처음 입력된 연산자와 다른 경우
             elif len(inputLine) > 2 and line != inputLine[1]:
