@@ -1,33 +1,33 @@
-#2023.11.9(목) calculator Version.3
+#2023.11.10(금) calculator Version.4
 
 #연산자 함수 Add, Sub, Mul
 def calculate(inputNum):
-    def Add(inputNum):
-        result=inputNum[0]
+    def add(inputNum):
+        sum=inputNum[0]
         for i in range (2, len(inputNum),2):
-            result += inputNum[i]
-        return result
+            sum += inputNum[i]
+        return sum
 
-    def Sub(inputNum):
-        result = inputNum[0]
-        for i in range(2, len(inputNum),2): 
-            result -= inputNum[i]
-        return result
+    def sub(inputNum):
+        sum = inputNum[0]
+        for i in range(2, len(inputNum),2):
+            sum -= inputNum[i]
+        return sum
 
-    def Mul(inputNum):
-        result = inputNum[0]
+    def mul(inputNum):
+        sum = inputNum[0]
         for i in range (2, len(inputNum),2):
-            result *= inputNum[i]
-        return result
+            sum *= inputNum[i]
+        return sum
 
     if inputNum[1]=='+':
-        result = Add(inputNum)
+        result = add(inputNum)
 
     elif inputNum[1]=='-':
-        result = Sub(inputNum)
+        result = sub(inputNum)
 
     elif inputNum[1]=='*':
-        result = Mul(inputNum)
+        result = mul(inputNum)
 
     print(result)
     print("--------------")
@@ -41,7 +41,7 @@ def easterEgg(inputNum):
     easter2 = [112, '+', 119]
     easter3 = [1577, '-', 1577]
 
-    easter_dict = {
+    easterDict = {
         7534: "=> HELP!",
         777: "=> JACKPOT!",
         404: "=> 404 NOT FOUND",
@@ -51,8 +51,8 @@ def easterEgg(inputNum):
         20231019: "=> 소프트웨어공학(2분반) 중간고사 날짜입니다."
     }
 
-    if inputNum[-1] in easter_dict:
-        print(easter_dict[inputNum[-1]])
+    if inputNum[-1] in easterDict:
+        print(easterDict[inputNum[-1]])
 
     for i in range(len(inputNum) - len(easter1) + 1):
         if inputNum[i:i+len(easter1)] == easter1:
@@ -76,9 +76,12 @@ def easterEgg(inputNum):
             print("앞뒤가 똑같은 번호 1577")
             print("대리운전 1577")
 
+# ERROR 메시지 출력 후 이전까지의 입력값을 보여주는 함수
 def printList(inputLine):
+    print("<진행 중인 연산>")
     for e in inputLine:
-        print(e)
+        print(e, end=" ")
+    if len(inputLine) != 0 : print(" ")
 
 # main 함수
 def main():
@@ -109,6 +112,7 @@ def main():
                 # 결과 출력 
                 else:
                     calculate(inputLine)
+                    inputLine.clear()
                     continue
             # 입력된 연산자가 처음 입력된 연산자와 다른 경우
             elif len(inputLine) > 2 and line != inputLine[1]:
