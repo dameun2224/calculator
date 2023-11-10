@@ -1,6 +1,6 @@
 #2023.11.10(금) calculator Version.4
 
-#연산자 함수 Add, Sub, Mul
+#연산자 함수 add, sub, mul
 def calculate(inputNum):
     def add(inputNum):
         sum=inputNum[0]
