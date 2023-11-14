@@ -1,4 +1,4 @@
-#2023.11.10(금) calculator Version.4
+#2023.11.10(금) calculator Version.5
 
 #연산자 함수 add, sub, mul
 def calculate(inputNum):
@@ -48,7 +48,7 @@ def easterEgg(inputNum):
         100: "=> Perfect score!",
         0: "=> ZERO",
         2023: "=> 2023년은 계묘년, 검은 토끼의 해입니다.",
-        20231019: "=> 소프트웨어공학(2분반) 중간고사 날짜입니다."
+        1019: "=> 소프트웨어공학(2분반) 중간고사 날짜입니다."
     }
 
     if inputNum[-1] in easterDict:
@@ -130,19 +130,20 @@ def main():
             # 정수 입력의 경우
             try:
                 num = int(line)
-                if len(inputLine) == 0:
+                # 숫자가 임계값을 넘어간 경우
+                if num > 100000:
+                    print("ERROR: 입력된 수가 임계값 100000을 넘었습니다.")
+                    print("--------------")
+                    printList(inputLine)
+                    continue
+                #inputLine 리스트가 비어있는 경우 num 추가 -> 정상
+                elif len(inputLine) == 0:
                     inputLine.append(num)
                     easterEgg(inputLine)
                     continue
                 # 숫자가 연속 2번 들어온 경우
                 elif type(inputLine[-1]) is int:
                     print("ERROR: 잘못된 값이 입력되었습니다. 연산자를 입력하세요")
-                    print("--------------")
-                    printList(inputLine)
-                    continue
-                # 숫자가 임계값을 넘어간 경우
-                elif num > 100000:
-                    print("ERROR: 입력된 수가 임계값 100000을 넘었습니다.")
                     print("--------------")
                     printList(inputLine)
                     continue
