@@ -28,14 +28,14 @@ class TestMainExceptionMethods(unittest.TestCase):
     #팩토리얼 음수 입력된 경우      
     def test_factorial_negative_error(self):
         input_sequence = ['-1','!', 'exit']
-        expected_output = "[SYSTEM] ERROR: Out Of Range\n"
+        expected_output = "[ERROR] Out Of Range\n"
         output = self.capture_output(input_sequence)
         self.assertIn(expected_output, output)
 
     # 팩토리얼 숫자 중복 입력
     def test_factorial_consecutive_error(self):
         input_sequence = ['3', '5', '!', 'exit']
-        expected_output = "계산기 시작 (프로그램을 종료하려면 exit를 입력하세요)\n"
+        expected_output = "[ERROR] Input Error\n"
         output = self.capture_output(input_sequence)
         self.assertIn(expected_output, output)
 
