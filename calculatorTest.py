@@ -1,5 +1,5 @@
 import unittest
-from calculator import calculate, easterEgg, main # 팩토리얼 추가 import 해야함
+from calculator import calculate, easterEgg, main
 from unittest.mock import patch
 from io import StringIO
 import sys
@@ -7,19 +7,20 @@ import sys
 # 테스트케이스 상속 받는 테스트 클래스 생성
 class TestCalculateMethods(unittest.TestCase):
     def capture_output_calculate(self, input_data, expected):
-        # Capture the output
+        # Output 모아서 한 번에 비교
         captured_output = StringIO()
         sys.stdout = captured_output
 
-        # Call the function
+        # 함수 호출
         calculate(input_data)
 
-        # Reset stdout
+        # 출력 초기화
         sys.stdout = sys.__stdout__
 
-        # Check the output
+        # 결과 확인
         self.assertIn(expected, captured_output.getvalue().strip())
         
+#기존 연산 정상 작동 테스트
     def test_add_case(self):
         self.capture_output_calculate([1, '+', 2], "3\n--------------")
         self.capture_output_calculate([3, '+', -2], "1\n--------------")
@@ -32,19 +33,13 @@ class TestCalculateMethods(unittest.TestCase):
         self.capture_output_calculate([2, '*', 3], "6\n--------------")
         self.capture_output_calculate([2, '*', -4], "-8\n--------------")
         self.capture_output_calculate([3, '*', 0], "0\n--------------")
-        
-        
-# class TestFactorialMethod(unittest.TestCase):
-#     def test_fac(self):
-#         self.assertEqual(factorial(5), 120)
-#         self.assertEqual(facorial(10), 3628800)
-#         self.assertEqual(factorial(0), 1)
-#         self.assertEqual(factorial(1), 1)
-#         # more case       
-        
+
+
+#코드 예외 처리 테스트
+
 class TestEasterEggMethods(unittest.TestCase):
    def test_easter_egg_output(self):
-    # Test data and expected output
+    # 이스터에그 모아서 루프를 통해 한 번에 비교
     test_cases = [
         ([7534], "[EVENT] => HELP!"),
         ([777], "[EVENT] => JACKPOT!"),
@@ -62,17 +57,17 @@ class TestEasterEggMethods(unittest.TestCase):
     for input_data, expected in test_cases:
         #각 subTest는 테스트 케이스의 일부분으로, 실패하더라도 다른 서브테스트의 실행에 영향을 주지 않음. 이를 통해 여러 데이터 세트 또는 조건들에 대한 테스트를 한 테스트 케이스 내에서 수행
         with self.subTest(input_data=input_data):
-            # Capture the output
+            # Output 모아서 한 번에 비교
             captured_output = StringIO()
             sys.stdout = captured_output
 
-            # Call the function
+            # 함수 호출
             easterEgg(input_data)
 
-            # Reset stdout
+            # 출력 초기화
             sys.stdout = sys.__stdout__
 
-            # Check the output
+            # 결과 확인
             self.assertIn(expected, captured_output.getvalue().strip())
 
 class TestMainExceptionMethods(unittest.TestCase):
@@ -82,7 +77,9 @@ class TestMainExceptionMethods(unittest.TestCase):
              patch('sys.stdout', new_callable=StringIO) as captured_output:
             main()
             return captured_output.getvalue()
-        
+
+#기존 예외 처리
+
     # 첫번째 입력이 연산자인 경우
     def test_operator_first_error(self):
         input_sequence = ['+', 'exit']
