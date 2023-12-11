@@ -77,7 +77,7 @@ class TestMainExceptionMethods(unittest.TestCase):
              patch('sys.stdout', new_callable=StringIO) as captured_output:
             main()
             return captured_output.getvalue()
-
+        
 #기존 예외 처리
 
     # 첫번째 입력이 연산자인 경우
@@ -111,7 +111,7 @@ class TestMainExceptionMethods(unittest.TestCase):
     def test_consecutive_numbers_error(self):
         input_sequence = ['3', '4', 'exit']
         output = self.capture_output(input_sequence)
-        self.assertIn("[SYSTEM] ERROR: 잘못된 값이 입력되었습니다. 연산자를 입력하세요", output)
+        self.assertIn("[ERROR] Input Error", output)
     # 잘못된 값 입력
     def test_invalid_input_error(self):
         input_sequence = ['abc', 'exit']
