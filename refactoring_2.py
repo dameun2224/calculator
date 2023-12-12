@@ -60,7 +60,7 @@ def easterEgg(inputNum):
         100: "Perfect score!",
         0: "ZERO",
         2023: "2023년은 계묘년, 검은 토끼의 해입니다.",
-        20231019: "소프트웨어공학(2분반) 중간고사 날짜입니다.",
+        1019: "소프트웨어공학(2분반) 중간고사 날짜입니다.",
         # 추가된 이스터에그
         1015: "전북대 개교기념일입니다."
     }
@@ -154,7 +154,7 @@ def main():
                     continue
             # 숫자가 두 개 이상 있는 경우 - 에러 출력
             else: 
-                print("[SYSTEM] ERROR: 한 가지 종류의 연산자만 입력하세요")
+                print("[ERROR] Input Error")
                 print("--------------")
                 printList(inputLine)
                 continue
