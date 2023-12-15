@@ -142,12 +142,14 @@ def main():
         elif line == '!':
             # 숫자가 하나만 있는 경우
             if len(inputLine) == 1:
-                if(inputLine[0] < 0): # 에러 출력 - 음수
+                # 에러 출력 - 음수
+                if(inputLine[0] < 0): 
                     print("[ERROR] Out Of Range")
                     print("--------------")
                     printList(inputLine)
                     continue
-                else: # 정상 출력
+                 # 정상 출력    
+                else:
                     print("= " + str(factorial(inputLine[0])))
                     print("--------------")
                     inputLine.clear()
@@ -165,7 +167,7 @@ def main():
                 num = int(line)
                 # 숫자가 임계값을 넘어간 경우
                 if num > 100000:
-                    print("[SYSTEM] ERROR: 입력된 수가 임계값 100000을 넘었습니다.")
+                    print("[SYSTEM] ERROR: 입력된 수가 임계값 100000을 넘었습니다")
                     print("--------------")
                     printList(inputLine)
                     continue
