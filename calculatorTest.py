@@ -102,7 +102,7 @@ class TestMainExceptionMethods(unittest.TestCase):
     def test_threshold_exceeded_error(self):
         input_sequence = ['100001', 'exit']
         expected_output = "계산기 시작 (프로그램을 종료하려면 exit를 입력하세요)\n" + \
-                          "[SYSTEM] ERROR: 입력된 수가 임계값 100000을 넘었습니다.\n" + \
+                          "[SYSTEM] ERROR: 입력된 수가 임계값 100000을 넘었습니다\n" + \
                           "--------------\n" + \
                           "<진행 중인 연산>\n"
         output = self.capture_output(input_sequence)
