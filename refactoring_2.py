@@ -38,9 +38,11 @@ def calculate(inputNum):
 # 팩토리얼 함수
 def factorial(inputNum):
     num = 1
-    if inputNum == 0: # 0이 들어오는 경우 (0! = 1을 처리하기 위함)
+    # 0이 들어오는 경우 (0! = 1을 처리하기 위함)
+    if inputNum == 0: 
         True
-    else: # 그외의 나머지 계산
+    # 그외의 나머지 계산
+    else: 
         for i in range(1,inputNum+1):
             num *= i
     return num
