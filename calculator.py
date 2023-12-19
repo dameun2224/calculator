@@ -1,4 +1,5 @@
-#2023.11.10(금) calculator Version.5
+#2023.12.11(월) calculator Version.4.2
+# 에러 및 이스터에그 출력 형식 변경
 
 #연산자 함수 add, sub, mul
 def calculate(inputNum):
@@ -32,7 +33,20 @@ def calculate(inputNum):
     print(result)
     print("--------------")
     inputNum.clear()
-            
+
+
+# 팩토리얼 함수
+def factorial(inputNum):
+    num = 1
+    # 0이 들어오는 경우 (0! = 1을 처리하기 위함)
+    if inputNum == 0: 
+        True
+    # 그외의 나머지 계산
+    else: 
+        for i in range(1,inputNum+1):
+            num *= i
+    return num
+
             
 # 이스터에그 함수
 def easterEgg(inputNum):
@@ -42,21 +56,23 @@ def easterEgg(inputNum):
     easter3 = [1577, '-', 1577]
 
     easterDict = {
-        7534: "=> HELP!",
-        777: "=> JACKPOT!",
-        404: "=> 404 NOT FOUND",
-        100: "=> Perfect score!",
-        0: "=> ZERO",
-        2023: "=> 2023년은 계묘년, 검은 토끼의 해입니다.",
-        1019: "=> 소프트웨어공학(2분반) 중간고사 날짜입니다."
+        7534: "HELP!",
+        777: "JACKPOT!",
+        404: "404 NOT FOUND",
+        100: "Perfect score!",
+        0: "ZERO",
+        2023: "2023년은 계묘년, 검은 토끼의 해입니다.",
+        1019: "소프트웨어공학(2분반) 중간고사 날짜입니다.",
+        # 추가된 이스터에그
+        1015: "전북대 개교기념일입니다."
     }
 
     if inputNum[-1] in easterDict:
-        print(easterDict[inputNum[-1]])
+        print("[EVENT] "+easterDict[inputNum[-1]])
 
     for i in range(len(inputNum) - len(easter1) + 1):
         if inputNum[i:i+len(easter1)] == easter1:
-            print("=> 정종욱 교수")
+            print("[EVENT] 정종욱 교수")
             print("소프트웨어 인터랙션 연구실")
             print("공대 7호관 503호")
             print("Email: jwjeong55@jbnu.ac.kr")
@@ -64,12 +80,12 @@ def easterEgg(inputNum):
     
     for i in range(len(inputNum) - len(easter2) + 1):
         if inputNum[i:i+len(easter2)] == easter2:
-            print("=> 폭력, 밀수, 학대, 미아, 해킹 등 범죄 112")
+            print("[EVENT] 폭력, 밀수, 학대, 미아, 해킹 등 범죄 112")
             print("구조·구급, 해양·전기·가스사고, 유해물질 유출 119")
 
     for i in range(len(inputNum) - len(easter3) + 1):
         if inputNum[i:i+len(easter3)] == easter3:
-            print("=> 앞뒤가 똑같은 전화번호 (1577)")
+            print("[EVENT] 앞뒤가 똑같은 전화번호 (1577)")
             print("앞뒤가 똑같은 전화번호")
             print("1577 1577")
             print("앞뒤가 똑같은 대리운전 (1577)")
@@ -97,7 +113,7 @@ def main():
         elif line in ['+', '-', '*','=']:
             # 첫번째 입력이 연산자인 경우 & 연산자가 연속 2번 입력된 경우
             if len(inputLine) == 0 or inputLine[-1] in ['+', '-', '*']:
-                print("ERROR: 연산자가 아닌 숫자를 입력하세요")
+                print("[SYSTEM] ERROR: 연산자가 아닌 숫자를 입력하세요")
                 print("--------------")
                 printList(inputLine)
                 continue
@@ -116,7 +132,7 @@ def main():
                     continue
             # 입력된 연산자가 처음 입력된 연산자와 다른 경우
             elif len(inputLine) > 2 and line != inputLine[1]:
-                print("ERROR: 한 가지 종류의 연산자만 입력하세요")
+                print("[SYSTEM] ERROR: 한 가지 종류의 연산자만 입력하세요")
                 print("--------------")
                 printList(inputLine)
                 continue
@@ -124,7 +140,28 @@ def main():
             else:
                 inputLine.append(line)
                 continue
-        
+        # 입력이 '!'인 경우
+        elif line == '!':
+            # 숫자가 하나만 있는 경우
+            if len(inputLine) == 1:
+                # 에러 출력 - 음수
+                if(inputLine[0] < 0): 
+                    print("[ERROR] Out Of Range")
+                    print("--------------")
+                    printList(inputLine)
+                    continue
+                 # 정상 출력    
+                else:
+                    print("= " + str(factorial(inputLine[0])))
+                    print("--------------")
+                    inputLine.clear()
+                    continue
+            # 숫자가 두 개 이상 있는 경우 - 에러 출력
+            else: 
+                print("[ERROR] Input Error")
+                print("--------------")
+                printList(inputLine)
+                continue
         # 입력이 숫자 혹은 그 외의 경우
         else:
             # 정수 입력의 경우
@@ -132,21 +169,21 @@ def main():
                 num = int(line)
                 # 숫자가 임계값을 넘어간 경우
                 if num > 100000:
-                    print("ERROR: 입력된 수가 임계값 100000을 넘었습니다.")
+                    print("[SYSTEM] ERROR: 입력된 수가 임계값 100000을 넘었습니다")
                     print("--------------")
                     printList(inputLine)
                     continue
-                #inputLine 리스트가 비어있는 경우 num 추가 -> 정상
                 elif len(inputLine) == 0:
                     inputLine.append(num)
                     easterEgg(inputLine)
                     continue
                 # 숫자가 연속 2번 들어온 경우
                 elif type(inputLine[-1]) is int:
-                    print("ERROR: 잘못된 값이 입력되었습니다. 연산자를 입력하세요")
+                    print("[ERROR] Input Error")
                     print("--------------")
                     printList(inputLine)
                     continue
+                
                 # 첫번째 입력이 숫자인 경우 & 이전 입력이 연산자인 경우 -> 정상
                 else: 
                     inputLine.append(num)
@@ -155,9 +192,11 @@ def main():
 
             # 잘못된 입력의 경우 (연산자 또는 정수가 아님)
             except ValueError:
-                print("ERROR: 잘못된 값이 입력되었습니다. 정수 또는 연산자(+,-,*)를 입력하세요")
+                print("[SYSTEM] ERROR: 잘못된 값이 입력되었습니다. 정수 또는 연산자(+,-,*)를 입력하세요")
                 print("--------------")
                 printList(inputLine)
                 continue
 
-main()
+
+if __name__ == "__main__":
+    main()
